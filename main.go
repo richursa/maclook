@@ -10,13 +10,13 @@ import (
 )
 
 func main() {
-	macAddress := flag.String("macaddress", "", "macaddress")                    //get macaddress from command line parameter
+	macAddress := flag.String("macaddress", "", "macaddress")                    // get macaddress from command line parameter
 	detail := flag.Bool("detail", false, "set to true to print detailed report") // check whether user wants to print a detailed report
-	apiKey := flag.String("apikey", "", "apikey obtained from macaddress.io")
+	apiKey := flag.String("apikey", "", "apikey obtained from macaddress.io")    // get apikey from commandline
 	flag.Parse()
-	if *apiKey == "" {
+	if *apiKey == "" { // if apikey is not given as command line parameter, try to get it from env
 		*apiKey = os.Getenv("apikey")
-		if *apiKey == "" {
+		if *apiKey == "" { // if apikey is not present in env and commandline parameter, raise an error
 			fmt.Println("Please provide apikey with -apikey=APIKEY_HERE")
 			fmt.Println("Run with -h for help")
 			os.Exit(1)
