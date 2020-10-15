@@ -21,7 +21,7 @@ Run with -h for help
 docker run maclook -h
 ```
 # eg :
- To get the Company name to which mac address is issued run (***dummy api key is used here***)
+ To get the Company name to which mac address is issued run (**fake api key is used here**)
 ```
 docker run maclook -macaddress=44:38:39:ff:ef:57 -apikey=at_bWCRfDLtmZxNwdiqNFMU9NbIZuZrs
 ```
