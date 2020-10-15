@@ -9,18 +9,25 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-var macAddress string
-
 func main() {
-	macAddress := flag.String("macaddress", "", "macaddress")
-	detail := flag.Bool("detail", false, "set to true to print detailed report")
+	macAddress := flag.String("macaddress", "", "macaddress")                    //get macaddress from command line parameter
+	detail := flag.Bool("detail", false, "set to true to print detailed report") // check whether user wants to print a detailed report
+	apiKey := flag.String("apikey", "", "apikey obtained from macaddress.io")
 	flag.Parse()
+	if *apiKey == "" {
+		*apiKey = os.Getenv("apikey")
+		if *apiKey == "" {
+			fmt.Println("Please provide apikey with -apikey=APIKEY_HERE")
+			fmt.Println("Run with -h for help")
+			os.Exit(1)
+		}
+	}
 	if *macAddress == "" {
 		fmt.Println("Please provide macaddress with -macaddress=MACADDRESS_HERE")
 		fmt.Println("Run with -h for help")
 		os.Exit(1)
 	}
-	maclook.SetAPIMacAdressIO()
+	maclook.SetAPIMacAdressIO(*apiKey) // setup macaddress api and apikey as macaddress.io
 	jsonText := maclook.MacLookUp(*macAddress)
 	if *detail {
 		fmt.Println(string(jsonText))
@@ -33,5 +40,4 @@ func main() {
 		fmt.Println("MAC Address  :", *macAddress)
 		fmt.Println("Company Name :", m["vendorDetails"].(map[string]interface{})["companyName"])
 	}
-
 }
