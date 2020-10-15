@@ -29,7 +29,7 @@ To view detailed information run with
 ```
 docker run maclook -macaddress=44:38:39:ff:ef:57 -detail=true  -apikey=at_bWCRfDLtmZxNwdiqNFMU9NbIZuZrs
 ```
-You can set the apikey in environment in Dockerfile before building to avoid typing apikey everytime by using
+You can set the apikey in environment in Dockerfile before building to avoid typing apikey everytime by adding the line
 ```
 ENV apikey=at_bWCRfDLtmZxNwdiqNFMU9NbIZuZrs
 ```
